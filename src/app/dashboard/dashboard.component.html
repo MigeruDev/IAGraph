@@ -1,0 +1,78 @@
+<div class="main-content">
+  <div class="container-fluid">
+      
+      <button (click)="generateRandomGraph()" mat-button><h2>Generar Grafo Aleatorio</h2></button>
+      <hr>
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">grain</i>
+                      </div>
+                      <h3 class="card-title">Nodos
+                      </h3>
+                  </div>
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width" style="text-align: right">
+                      <input [(ngModel)]="randomGraph.noNodos" matInput placeholder="No. Nodos" type="number" >
+                    </mat-form-field>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">device_hub</i>
+                      </div>
+                      <h3 class="card-title">Hijos</h3>
+                  </div>
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width" style="text-align: right">
+                      <input [(ngModel)]="randomGraph.maxHijos" matInput placeholder="Max. Hijos" type="number" >
+                    </mat-form-field>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">gps_fixed</i>
+                      </div>
+                      <h3 class="card-title">G(n)</h3>
+                  </div>
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width" style="text-align: right">
+                      <input [(ngModel)]="randomGraph.maxGN" matInput placeholder="Max. Función Evaluación" type="number" >
+                    </mat-form-field>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-info card-header-icon">
+                      <div class="card-icon">
+                        <i class="material-icons">show_chart</i>
+                      </div>
+                      <h3 class="card-title">H(n)</h3>
+                  </div>
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width" style="text-align: right">
+                      <input [(ngModel)]="randomGraph.maxHN" matInput placeholder="Max. Función Heurística" type="number" >
+                    </mat-form-field>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <button mat-button><h2>Generar Grafo Específico</h2></button>
+      <hr>
+      <div class="row">
+            
+            <div class="col-md-12">
+                <input #file type="file" accept="image/*" (change)="upload(file.files)">
+            </div>
+      </div>
+  </div>
+</div>
