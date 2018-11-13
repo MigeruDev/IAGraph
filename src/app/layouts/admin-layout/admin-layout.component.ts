@@ -5,6 +5,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
+import { FormControl, Validators, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-admin-layout',

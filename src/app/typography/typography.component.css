@@ -1,0 +1,23 @@
+
+.mat-expansion-panel:hover{
+    background-color: #ede7f6;
+}
+
+.mat-expansion-panel.mat-expanded{
+    background-color: #ede7f6;
+}
+
+.right{
+    text-align: right;
+}
+
+.sticky {
+    position: fixed;
+    background-color: #ede7f6;
+    z-index: 1;
+}
+
+
+.table-div{
+    max-height: 300px;
+}

@@ -1,7 +1,9 @@
 <div class="main-content">
   <div class="container-fluid">
       
-      <button (click)="generateRandomGraph()" mat-button><h2>Generar Grafo Aleatorio</h2></button>
+      <button class="col-md-12" (click)="generateRandomGraph()" style="text-align: left" mat-button>
+        <h2>Generar Grafo Aleatorio  <i class="medium material-icons">cached</i></h2>
+      </button>
       <hr>
       <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
@@ -15,7 +17,10 @@
                   </div>
                   <div class="col-md-12">
                     <mat-form-field class="example-full-width" style="text-align: right">
-                      <input [(ngModel)]="randomGraph.noNodos" matInput placeholder="No. Nodos" type="number" >
+                      <input [(ngModel)]="randomGraph.noNodos" min="2" [formControl]="minNodes" matInput placeholder="No. Nodos" type="number" >
+                      <mat-error *ngIf="minNodes.hasError('min')">
+                        Debe tener al menos <strong>2 Nodos</strong>
+                      </mat-error>
                     </mat-form-field>
                   </div>
               </div>
@@ -30,7 +35,10 @@
                   </div>
                   <div class="col-md-12">
                     <mat-form-field class="example-full-width" style="text-align: right">
-                      <input [(ngModel)]="randomGraph.maxHijos" matInput placeholder="Max. Hijos" type="number" >
+                      <input [(ngModel)]="randomGraph.maxHijos" [formControl]="rateControl" matInput placeholder="Max. Hijos" min="1" type="number" >
+                      <mat-error *ngIf="rateControl.hasError('min')">
+                        Debe tener al menos <strong>1 hijo</strong>
+                      </mat-error>
                     </mat-form-field>
                   </div>
               </div>
@@ -45,7 +53,7 @@
                   </div>
                   <div class="col-md-12">
                     <mat-form-field class="example-full-width" style="text-align: right">
-                      <input [(ngModel)]="randomGraph.maxGN" matInput placeholder="Max. Función Evaluación" type="number" >
+                      <input [(ngModel)]="randomGraph.maxGN" min="0" matInput placeholder="Max. Función Evaluación" type="number" >
                     </mat-form-field>
                   </div>
               </div>
@@ -60,13 +68,15 @@
                   </div>
                   <div class="col-md-12">
                     <mat-form-field class="example-full-width" style="text-align: right">
-                      <input [(ngModel)]="randomGraph.maxHN" matInput placeholder="Max. Función Heurística" type="number" >
+                      <input [(ngModel)]="randomGraph.maxHN" min="0" matInput placeholder="Max. Función Heurística" type="number" >
                     </mat-form-field>
                   </div>
               </div>
           </div>
       </div>
-      <button mat-button><h2>Generar Grafo Específico</h2></button>
+      <button class="col-md-12" style="text-align: left" mat-button>
+        <h2>Generar Grafo Específico  <i class="medium material-icons">publish</i></h2>
+      </button>
       <hr>
       <div class="row">
             

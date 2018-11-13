@@ -2,17 +2,28 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as Chartist from 'chartist';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, Validators, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
   
-  @Input() randomGraph = { noNodos:0, maxHijos: 0, maxHN: 0, maxGN: 0 };
+  @Input() randomGraph = { noNodos:2, maxHijos: 1, maxHN: 0, maxGN: 0 };
+
+  @Input() rateControl = new FormControl(0, Validators.min(1));
+  @Input() minNodes = new FormControl(0, Validators.min(2));
 
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
+
+  getErrorMessage() {
+    return this.rateControl.hasError('required') ? 'You must enter a value' :
+        this.rateControl.hasError('min') ? 'Debe tener al menos 1 hijo' :
+            'fafdasfasd';
+  }
 
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
@@ -47,6 +58,7 @@ export class DashboardComponent implements OnInit {
 
       seq = 0;
   };
+
   startAnimationForBarChart(chart){
       let seq2: any, delays2: any, durations2: any;
 
@@ -70,6 +82,7 @@ export class DashboardComponent implements OnInit {
 
       seq2 = 0;
   };
+
   ngOnInit() {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
@@ -159,5 +172,7 @@ export class DashboardComponent implements OnInit {
       console.log(err);
     });
   }
+
+
 
 }

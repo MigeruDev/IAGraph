@@ -10,9 +10,7 @@
                   <div class="card-body">
                         <ul>
                             <li *ngFor="let n of nodes;">
-                                <a>
-                                <span class="badge">{{n._id}}</span> [{{n.hijos}}]
-                                </a>
+                                {{n._id}} [{{n.hijos}}] : {{n.Gn}}
                             </li>
                         </ul>
                     

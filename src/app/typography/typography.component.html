@@ -2,18 +2,174 @@
   <div class="container-fluid">
     <div class="card">
         <div class="card-header card-header-danger">
-            <h4 class="card-title">???</h4>
+            <h4 class="card-title">ALGORITMOS DE BÚSQUEDA A CIEGAS
+            </h4>
             <p class="card-category">???</p>
         </div>
         <div class="card-body">
-            <div id="typography">
-                <div class="card-title">
-                    <h2>???</h2>
-                </div>
-                <div class="row">
+                <mat-accordion>
+                    <mat-expansion-panel class="">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Búsqueda en Amplitud
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        
+                        <div class="row">
+                            <div class="col-md-2">
+                                <mat-form-field class="" >
+                                    <input [(ngModel)]="search.start" style="text-align: right" min="0" matInput placeholder="Nodo Raíz" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <mat-form-field class="" >
+                                    <input [(ngModel)]="search.goal" style="text-align: right" min="0" matInput placeholder="Nodo Destino" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <button mat-raised-button color="primary">
+                                    Comenzar <i class="material-icons">search</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="table-responsive table-div">
+                                    <table class="table table-hover">
+                                        <thead class="text-primary">
+                                            <th>
+                                                Paso
+                                            </th>
+                                            <th>
+                                                Estructura
+                                            </th>
+                                            <th>
+                                                Extraer
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let n of dataSource;">
+                                                <td>
+                                                    {{i}}
+                                                </td>
+                                                <td>
+                                                    4
+                                                </td>
+                                                <td>
+                                                    Philip Chaney
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Búsqueda en Profundidad
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                
+                        <div class="row">
+                            <div class="col-md-2">
+                                <mat-form-field class="">
+                                    <input [(ngModel)]="search.start" style="text-align: right" min="0" matInput placeholder="Nodo Raíz" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <mat-form-field class="">
+                                    <input [(ngModel)]="search.goal" style="text-align: right" min="0" matInput placeholder="Nodo Destino" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <button mat-raised-button color="primary">
+                                    Comenzar <i class="material-icons">search</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Búsqueda de Profundidad Iterativa
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                
+                        <div class="row">
+                            <div class="col-md-2">
+                                <mat-form-field class="" >
+                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <mat-form-field class="" >
+                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino" type="number">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Búsqueda de Costo Uniforme
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                
+                        <div class="row">
+                            <div class="col-md-2">
+                                <mat-form-field class="" >
+                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <mat-form-field class="" >
+                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino" type="number">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Búsqueda Bidireccional
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <mat-form-field class="" >
+                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz" type="number">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <mat-form-field class="" >
+                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino" type="number">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <!--
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        This is the expansion title
+                    </mat-expansion-panel-header>
                     
-                </div>
-            </div>
+                    <ng-template matExpansionPanelContent>
+                        Some deferred content
+                    </ng-template>
+                </mat-expansion-panel>
+                -->
         </div>
     </div>
 </div>
