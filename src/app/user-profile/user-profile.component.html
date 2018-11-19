@@ -5,15 +5,12 @@
               <div class="card">
                   <div class="card-header card-header-danger">
                       <h4 class="card-title">Graph Information</h4>
-                      <p class="card-category">Nodes (_id, hijos)</p>
+                      <p class="card-category">Para grafos extensos: En caso de que el grafo no se muestre correctamente debe esperar un momento hasta que se renderize completamente<br/>
+                      Nodos del mismo tamaño/color tienen el mismo valor Funcional <br/>
+                      El Grafo es zoomable y draggable</p>
                   </div>
                   <div class="card-body">
-                        <ul>
-                            <li *ngFor="let n of nodes;">
-                                {{n._id}} [{{n.hijos}}] : {{n.Gn}}
-                            </li>
-                        </ul>
-                        <svg width="500" height="500"></svg>
+                        <svg width="600" height="500"></svg>
                   </div>
               </div>
               

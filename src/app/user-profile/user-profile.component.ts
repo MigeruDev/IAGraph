@@ -5,13 +5,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as d3 from 'd3';
 
 interface Node {
-  id: string;
-  group: number;
+  _id: number;
+  hijos: number[];
+  Gn: number;
 }
 
 interface Link {
-  source: string;
-  target: string;
+  source: number;
+  target: number;
   value: number;
 }
 
@@ -29,29 +30,37 @@ interface Graph {
 
 export class UserProfileComponent implements OnInit {
 
-  nodes:any = [];
+  grafo:any = [];
 
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.getNodes();
+    /*this.getNodes();*/
     console.log('D3.js version:', d3['version']);
 
-    const svg = d3.select('svg');
+    const svg = d3.select("svg");
     const width = +svg.attr('width');
     const height = +svg.attr('height');
 
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
+    const zoom_handler = d3.zoom()
+      .on("zoom", zoom_actions);
+
+    zoom_handler(svg as any); 
+
     const simulation = d3.forceSimulation()
-      .force('link', d3.forceLink().id((d: any) => d.id))
+      .force('link', d3.forceLink())
       .force('charge', d3.forceManyBody())
-      .force('collide', d3.forceCollide((d: any) =>  d.id === "j" ? 90 : 40 ))
-      .force('center', d3.forceCenter(width / 2, height / 2));
+      .force('collide', d3.forceCollide((d: any) =>  d.id === "j" ? 110 : 60 ))
+      .force('center', d3.forceCenter(width / 2 , height / 2));
 
     /*.force('collide', d3.forceCollide((d: any) =>  d.id === "j" ? 100 : 50 )) */
 
-    d3.json('assets/miserables.json').
+    const g = svg.append("g")
+      .attr("class", "everything");
+
+    d3.json('http://127.0.0.1:5000/graph').
       then((data: any) => {
         const nodes: Node[] = [];
         const links: Link[] = [];
@@ -66,22 +75,22 @@ export class UserProfileComponent implements OnInit {
 
         const graph: Graph = <Graph>{ nodes, links };
 
-        const link = svg.append('g')
+        const link = g.append('g')
           .attr('class', 'links')
           .selectAll('line')
           .data(graph.links)
           .enter()
           .append('line')
-          .attr('stroke-width', (d: any) => Math.sqrt(d.value));
+          .attr('stroke-width', (d: any) => Math.sqrt(d.value)+1);
 
-        const node = svg.append('g')
+        const node = g.append('g')
           .attr('class', 'nodes')
           .selectAll('circle')
           .data(graph.nodes)
           .enter()
           .append('circle')
-          .attr('r', (d: any) => 1.5*d.group + 5)
-          .attr('fill', (d: any) => color(d.group));
+          .attr('r', (d: any) => 1.5*d.Gn + 10)
+          .attr('fill', (d: any) => color(d.Gn));
 
 
 
@@ -90,23 +99,24 @@ export class UserProfileComponent implements OnInit {
           .attr('x', 6)
           .attr('y', 3);*/
 
-        svg.selectAll('circle').call(d3.drag()
+        g.selectAll('circle').call(d3.drag()
           .on('start', dragstarted)
           .on('drag', dragged)
           .on('end', dragended)
         );
 
-        const textElements = svg.append('g')
+        const textElements = g.append('g')
         .selectAll('text')
         .data(graph.nodes)
         .enter().append('text')
-          .text(node => node.id)
-          .attr('font-size', 15)
-          .attr('dx', 15)
-          .attr('dy', 4)
+          .text(node => node._id)
+          .attr('font-size', 20)
+          .attr('text-anchor','middle')
+          .attr('fill', 'white')
+          .attr('dy', 5)
 
         node.append('title')
-          .text((d) => d.id);
+          .text((d) => d._id);
 
         simulation
           .nodes(graph.nodes)
@@ -131,8 +141,12 @@ export class UserProfileComponent implements OnInit {
         }
       })
       .catch((err) => {
-        throw new Error('Bad data file!'); 
+        throw new Error('Bad data file! '+err); 
       });
+
+    function zoom_actions(){
+      g.attr("transform", d3.event.transform)
+    }
 
     function dragstarted(d) {
       if (!d3.event.active) { simulation.alphaTarget(0.3).restart(); }
@@ -153,10 +167,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   getNodes() {
-    this.nodes = [];
+    this.grafo = [];
     this.rest.getNodes().subscribe((data: {}) => {
       console.log(data);
-      this.nodes = data;
+      this.grafo = data;
     });
   }
 

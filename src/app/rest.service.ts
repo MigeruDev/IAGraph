@@ -23,7 +23,7 @@ export class RestService {
   }
 
   getNodes(): Observable<any> {
-    return this.http.get(endpoint + 'nodes').pipe(
+    return this.http.get(endpoint + 'graph').pipe(
       map(this.extractData));
   }
   
