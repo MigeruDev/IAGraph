@@ -35,6 +35,14 @@ export class RestService {
     );
   }
 
+  blindSearch (search): Observable<any> {
+    console.log(search);
+    return this.http.post<any>(endpoint + 'blind_search', JSON.stringify(search), httpOptions).pipe(
+      tap((search) => console.log(`Blind Search w/ id=${search.id}`)),
+      catchError(this.handleError<any>('Blind Search'))
+    );
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   

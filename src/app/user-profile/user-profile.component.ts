@@ -50,9 +50,9 @@ export class UserProfileComponent implements OnInit {
     zoom_handler(svg as any); 
 
     const simulation = d3.forceSimulation()
-      .force('link', d3.forceLink())
+      .force('link', d3.forceLink().id((d:any) => d._id))
       .force('charge', d3.forceManyBody())
-      .force('collide', d3.forceCollide((d: any) =>  d.id === "j" ? 110 : 60 ))
+      .force('collide', d3.forceCollide((d: any) =>  d._id === "j" ? 110 : 60 ))
       .force('center', d3.forceCenter(width / 2 , height / 2));
 
     /*.force('collide', d3.forceCollide((d: any) =>  d.id === "j" ? 100 : 50 )) */
@@ -116,7 +116,7 @@ export class UserProfileComponent implements OnInit {
           .attr('dy', 5)
 
         node.append('title')
-          .text((d) => d._id);
+          .text((d) => d.hijos.toString());
 
         simulation
           .nodes(graph.nodes)
@@ -138,6 +138,7 @@ export class UserProfileComponent implements OnInit {
           textElements
             .attr('x', function(d: any) { return d.x; })
             .attr('y', function(d: any) { return d.y; });
+
         }
       })
       .catch((err) => {

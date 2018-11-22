@@ -27,7 +27,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-2">
-                                <button mat-raised-button color="primary">
+                                <button (click)="blindSearch('BFS')" mat-raised-button color="primary">
                                     Comenzar <i class="material-icons">search</i>
                                 </button>
                             </div>
@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="table-responsive table-div">
-                                    <table class="table table-hover">
+                                    <table class="table table-hover" style="text-align: right">
                                         <thead class="text-primary">
                                             <th>
                                                 Paso
@@ -48,15 +48,15 @@
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let n of dataSource;">
+                                            <tr *ngFor="let n of searchResult['queue']; let i = index">
                                                 <td>
                                                     {{i}}
                                                 </td>
-                                                <td>
-                                                    4
+                                                <td >
+                                                    {{n}}
                                                 </td>
-                                                <td>
-                                                    Philip Chaney
+                                                <td >
+                                                    {{searchResult['pop'][i]}}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -85,14 +85,41 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-md-2">
-                                <button mat-raised-button color="primary">
+                                <button (click)="blindSearch('DFS')" mat-raised-button color="primary">
                                     Comenzar <i class="material-icons">search</i>
                                 </button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                
+                                    <div class="table-responsive table-div">
+                                            <table class="table table-hover" style="text-align: right">
+                                                <thead class="text-primary">
+                                                    <th>
+                                                        Paso
+                                                    </th>
+                                                    <th>
+                                                        Estructura
+                                                    </th>
+                                                    <th>
+                                                        Extraer
+                                                    </th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let n of searchResult['queue']; let i = index">
+                                                        <td>
+                                                            {{i}}
+                                                        </td>
+                                                        <td >
+                                                            {{n}}
+                                                        </td>
+                                                        <td >
+                                                            {{searchResult['pop'][i]}}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                             </div>
                         </div>
                     </mat-expansion-panel>
