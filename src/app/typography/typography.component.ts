@@ -15,7 +15,11 @@ export class TypographyComponent implements OnInit {
   
   @Input() search = {start:0, goal:0, search:''};
   
-  searchResult = {}
+  searchResult = {'BFS':{},
+                  'DFS': {},
+                  'IDDFS': {},
+                  'UCS': {},
+                  'BS': {}}
 
   
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
@@ -28,7 +32,7 @@ export class TypographyComponent implements OnInit {
     this.search['search'] = algorithm
     this.rest.blindSearch(this.search).subscribe((result) => {
       
-      this.searchResult = result
+      this.searchResult[algorithm] = result
     }, (err) => {
       console.log(err);
     });

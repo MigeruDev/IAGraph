@@ -48,7 +48,7 @@
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let n of searchResult['queue']; let i = index">
+                                            <tr *ngFor="let n of searchResult['BFS']['queue']; let i = index">
                                                 <td>
                                                     {{i}}
                                                 </td>
@@ -56,7 +56,7 @@
                                                     {{n}}
                                                 </td>
                                                 <td >
-                                                    {{searchResult['pop'][i]}}
+                                                    {{searchResult['BFS']['pop'][i]}}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -92,34 +92,34 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                    <div class="table-responsive table-div">
-                                            <table class="table table-hover" style="text-align: right">
-                                                <thead class="text-primary">
-                                                    <th>
-                                                        Paso
-                                                    </th>
-                                                    <th>
-                                                        Estructura
-                                                    </th>
-                                                    <th>
-                                                        Extraer
-                                                    </th>
-                                                </thead>
-                                                <tbody>
-                                                    <tr *ngFor="let n of searchResult['queue']; let i = index">
-                                                        <td>
-                                                            {{i}}
-                                                        </td>
-                                                        <td >
-                                                            {{n}}
-                                                        </td>
-                                                        <td >
-                                                            {{searchResult['pop'][i]}}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                <div class="table-responsive table-div">
+                                    <table class="table table-hover" style="text-align: right">
+                                        <thead class="text-primary">
+                                            <th>
+                                                Paso
+                                            </th>
+                                            <th>
+                                                Estructura
+                                            </th>
+                                            <th>
+                                                Extraer
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let n of searchResult['DFS']['queue']; let i = index">
+                                                <td>
+                                                    {{i}}
+                                                </td>
+                                                <td>
+                                                    {{n}}
+                                                </td>
+                                                <td>
+                                                    {{searchResult['DFS']['pop'][i]}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </mat-expansion-panel>
@@ -134,13 +134,50 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <mat-form-field class="" >
-                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz" type="number">
+                                    <input [(ngModel)]="search.start" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz" type="number">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-2">
                                 <mat-form-field class="" >
-                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino" type="number">
+                                    <input [(ngModel)]="search.goal" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino" type="number">
                                 </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <button (click)="blindSearch('IDDFS')" mat-raised-button color="primary">
+                                    Comenzar <i class="material-icons">search</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="table-responsive table-div">
+                                    <table class="table table-hover" style="text-align: right">
+                                        <thead class="text-primary">
+                                            <th>
+                                                Paso
+                                            </th>
+                                            <th>
+                                                Estructura
+                                            </th>
+                                            <th>
+                                                Extraer
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let n of searchResult['IDDFS']['queue']; let i = index">
+                                                <td>
+                                                    {{i}}
+                                                </td>
+                                                <td>
+                                                    {{n}}
+                                                </td>
+                                                <td>
+                                                    {{searchResult['IDDFS']['pop'][i]}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </mat-expansion-panel>
@@ -155,13 +192,56 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <mat-form-field class="" >
-                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz" type="number">
+                                    <input [(ngModel)]="search.start" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz" type="number">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-2">
                                 <mat-form-field class="" >
-                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino" type="number">
+                                    <input [(ngModel)]="search.goal" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino" type="number">
                                 </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <button (click)="blindSearch('UCS')" mat-raised-button color="primary">
+                                    Comenzar <i class="material-icons">search</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="table-responsive table-div">
+                                    <table class="table table-hover" style="text-align: right">
+                                        <thead class="text-primary">
+                                            <th>
+                                                Paso
+                                            </th>
+                                            <th>
+                                                Estructura
+                                            </th>
+                                            <th>
+                                                Extraer
+                                            </th>
+                                            <th>
+                                                Coste Total
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let n of searchResult['UCS']['queue']; let i = index">
+                                                <td>
+                                                    {{i}}
+                                                </td>
+                                                <td>
+                                                    {{n}}
+                                                </td>
+                                                <td>
+                                                    {{searchResult['UCS']['pop'][i]}}
+                                                </td>
+                                                <td>
+                                                    {{searchResult['UCS']['total_cost'][i]}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </mat-expansion-panel>
@@ -175,28 +255,17 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <mat-form-field class="" >
-                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz" type="number">
+                                    <input [(ngModel)]="search.start" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz" type="number">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-2">
                                 <mat-form-field class="" >
-                                    <input style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino" type="number">
+                                    <input [(ngModel)]="search.goal" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino" type="number">
                                 </mat-form-field>
                             </div>
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
-                <!--
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        This is the expansion title
-                    </mat-expansion-panel-header>
-                    
-                    <ng-template matExpansionPanelContent>
-                        Some deferred content
-                    </ng-template>
-                </mat-expansion-panel>
-                -->
         </div>
     </div>
 </div>
