@@ -3,7 +3,7 @@ const express= require('express'),
 
 const app = express();
 
-app.use(express.static('./dist/iagraph'));
+app.use(express.static('/dist/iagraph'));
 
 app.get('/*',(req,res)=>{
     res.sendFile(path.join(__dirname,'/dist/iagraph/index.html'))
