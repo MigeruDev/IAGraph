@@ -5,7 +5,8 @@ import {of} from "rxjs/observable/of";
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-const endpoint = 'http://127.0.0.1:5000/';
+//const endpoint = 'http://127.0.0.1:5000/';
+const endpoint = 'https://iagraph-server.herokuapp.com/';
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
