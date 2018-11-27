@@ -2,34 +2,255 @@
   <div class="container-fluid">
       <div class="card">
           <div class="card-header card-header-danger">
-              <h3 class="card-title">???</h3>
+              <h3 class="card-title">ALGORITMOS DE BÚSQUEDA HEURÍSTICA</h3>
               <p class="card-category">???
                   
               </p>
           </div>
-          <div class="card-body">
-              <div class="row">
-                  
-              </div>
-          </div>
-          <div class="col-md-12">
-              <div class="places-buttons">
-                  <div class="row">
-                      <div class="col-md-6 ml-auto mr-auto text-center">
-                          <h4 class="card-title">
-                              ???
-                              <p class="category">???</p>
-                          </h4>
-                      </div>
-                  </div>
-                  <div class="row">
-                      
-                  </div>
-                  <div class="row">
-                      
-                  </div>
-              </div>
-          </div>
+        <div class="card-body">
+            <mat-accordion>
+                <mat-expansion-panel class="">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Búsqueda Gradiente
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+        
+                    <div class="row">
+                        <div class="col-md-2">
+                            <mat-form-field class="">
+                                <input [(ngModel)]="search.start" style="text-align: right" min="0" matInput placeholder="Nodo Raíz"
+                                    type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <mat-form-field class="">
+                                <input [(ngModel)]="search.goal" style="text-align: right" min="0" matInput placeholder="Nodo Destino"
+                                    type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <button (click)="heuristicSearch('HC')" mat-raised-button color="primary">
+                                Comenzar <i class="material-icons">search</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="table-responsive table-div">
+                                <table class="table table-hover" style="text-align: right">
+                                    <thead class="text-primary">
+                                        <th>
+                                            Paso
+                                        </th>
+                                        <th>
+                                            Estructura
+                                        </th>
+                                        <th>
+                                            Extraer
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let n of heuristicSearchResult['HC']['queue']; let i = index">
+                                            <td>
+                                                {{i}}
+                                            </td>
+                                            <td>
+                                                {{n}}
+                                            </td>
+                                            <td>
+                                                {{heuristicSearchResult['HC']['pop'][i]}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+        
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Búsqueda Primero el Mejor
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+        
+                    <div class="row">
+                        <div class="col-md-2">
+                            <mat-form-field class="">
+                                <input [(ngModel)]="search.start" style="text-align: right" min="0" matInput placeholder="Nodo Raíz"
+                                    type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <mat-form-field class="">
+                                <input [(ngModel)]="search.goal" style="text-align: right" min="0" matInput placeholder="Nodo Destino"
+                                    type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <button (click)="heuristicSearch('BestFS')" mat-raised-button color="primary">
+                                Comenzar <i class="material-icons">search</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="table-responsive table-div">
+                                <table class="table table-hover" style="text-align: right">
+                                    <thead class="text-primary">
+                                        <th>
+                                            Paso
+                                        </th>
+                                        <th>
+                                            Estructura
+                                        </th>
+                                        <th>
+                                            Extraer
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let n of heuristicSearchResult['BestFS']['queue']; let i = index">
+                                            <td>
+                                                {{i}}
+                                            </td>
+                                            <td>
+                                                {{n}}
+                                            </td>
+                                            <td>
+                                                {{heuristicSearchResult['BestFS']['pop'][i]}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+        
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Búsqueda A*
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+        
+                    <div class="row">
+                        <div class="col-md-2">
+                            <mat-form-field class="">
+                                <input [(ngModel)]="search.start" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz"
+                                    type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <mat-form-field class="">
+                                <input [(ngModel)]="search.goal" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino"
+                                    type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <button (click)="heuristicSearch('A*')" mat-raised-button color="primary">
+                                Comenzar <i class="material-icons">search</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="table-responsive table-div">
+                                <table class="table table-hover" style="text-align: right">
+                                    <thead class="text-primary">
+                                        <th>
+                                            Paso
+                                        </th>
+                                        <th>
+                                            Estructura
+                                        </th>
+                                        <th>
+                                            Extraer
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let n of heuristicSearchResult['A*']['queue']; let i = index">
+                                            <td>
+                                                {{i}}
+                                            </td>
+                                            <td>
+                                                {{n}}
+                                            </td>
+                                            <td>
+                                                {{heuristicSearchResult['A*']['pop'][i]}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+        
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Búsqueda Avara
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+        
+                    <div class="row">
+                        <div class="col-md-2">
+                            <mat-form-field class="">
+                                <input [(ngModel)]="search.start" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Raíz"
+                                    type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <mat-form-field class="">
+                                <input [(ngModel)]="search.goal" style="text-align: right" min="0" matInput placeholder="Ingrese el nodo Destino"
+                                    type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <button (click)="heuristicSearch('GS')" mat-raised-button color="primary">
+                                Comenzar <i class="material-icons">search</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="table-responsive table-div">
+                                <table class="table table-hover" style="text-align: right">
+                                    <thead class="text-primary">
+                                        <th>
+                                            Paso
+                                        </th>
+                                        <th>
+                                            Estructura
+                                        </th>
+                                        <th>
+                                            Extraer
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let n of heuristicSearchResult['GS']['queue']; let i = index">
+                                            <td>
+                                                {{i}}
+                                            </td>
+                                            <td>
+                                                {{n}}
+                                            </td>
+                                            <td>
+                                                {{heuristicSearchResult['GS']['pop'][i]}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+        
+            </mat-accordion>
+        </div>
       </div>
   </div>
 </div>

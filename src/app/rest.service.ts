@@ -27,6 +27,11 @@ export class RestService {
       map(this.extractData));
   }
   
+  getComplexity(): Observable<any> {
+    return this.http.get(endpoint + 'complexity').pipe(
+      map(this.extractData));
+  }
+
   generateRandomGraph (graph): Observable<any> {
     console.log(graph);
     return this.http.post<any>(endpoint + 'generate_random', JSON.stringify(graph), httpOptions).pipe(
@@ -40,6 +45,14 @@ export class RestService {
     return this.http.post<any>(endpoint + 'blind_search', JSON.stringify(search), httpOptions).pipe(
       tap((search) => console.log(`Blind Search w/ id=${search.id}`)),
       catchError(this.handleError<any>('Blind Search'))
+    );
+  }
+
+  heuristicSearch (search): Observable<any> {
+    console.log(search);
+    return this.http.post<any>(endpoint + 'heuristic_search', JSON.stringify(search), httpOptions).pipe(
+      tap((search) => console.log(`Heuristic Search w/ id=${search.id}`)),
+      catchError(this.handleError<any>('Heuristic Search'))
     );
   }
 

@@ -1,42 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-declare var $: any;
+import { Component, OnInit, Input } from '@angular/core';
+import { RestService } from '../rest.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.css']
 })
+
 export class NotificationsComponent implements OnInit {
 
-  constructor() { }
-  showNotification(from, align){
-      const type = ['','info','success','warning','danger'];
+  @Input() search = {start:0, goal:0, search:''};
+  
+  heuristicSearchResult = {'HC':{},
+                  'BestFS': {},
+                  'A*': {},
+                  'GS': {}}
 
-      const color = Math.floor((Math.random() * 4) + 1);
+  constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
-      $.notify({
-          icon: "notifications",
-          message: "Welcome to <b>Material Dashboard</b> - a beautiful freebie for every web developer."
-
-      },{
-          type: type[color],
-          timer: 4000,
-          placement: {
-              from: from,
-              align: align
-          },
-          template: '<div data-notify="container" class="col-xl-4 col-lg-4 col-11 col-sm-4 col-md-4 alert alert-{0} alert-with-icon" role="alert">' +
-            '<button mat-button  type="button" aria-hidden="true" class="close mat-button" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
-            '<i class="material-icons" data-notify="icon">notifications</i> ' +
-            '<span data-notify="title">{1}</span> ' +
-            '<span data-notify="message">{2}</span>' +
-            '<div class="progress" data-notify="progressbar">' +
-              '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-            '</div>' +
-            '<a href="{3}" target="{4}" data-notify="url"></a>' +
-          '</div>'
-      });
-  }
   ngOnInit() {
+    if (localStorage.getItem('heuristicSearchResult')===null){
+      
+    }else{
+      this.heuristicSearchResult = JSON.parse(localStorage.getItem('heuristicSearchResult'))
+      
+    }
+  }
+
+  heuristicSearch(algorithm: string) {
+    this.search['search'] = algorithm
+    this.rest.heuristicSearch(this.search).subscribe((result) => {
+      
+      this.heuristicSearchResult[algorithm] = result
+      localStorage.setItem('heuristicSearchResult', JSON.stringify(this.heuristicSearchResult))
+    }, (err) => {
+      console.log(err);
+    });
   }
 
 }
