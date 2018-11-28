@@ -60,7 +60,7 @@ export class UserProfileComponent implements OnInit {
     const g = svg.append("g")
       .attr("class", "everything");
 
-    d3.json('http://127.0.0.1:5000/graph').
+    d3.json('https://iagraph-server.herokuapp.com/graph').
       then((data: any) => {
         const nodes: Node[] = [];
         const links: Link[] = [];
