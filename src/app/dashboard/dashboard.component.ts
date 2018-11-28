@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import * as Chartist from 'chartist';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,8 @@ import { FormControl, Validators, FormGroup, ReactiveFormsModule} from '@angular
 })
 
 export class DashboardComponent implements OnInit {
-  
+
+  @ViewChild('fileInput') fileInput;
   @Input() randomGraph = { noNodos:2, maxHijos: 1, maxHN: 0, maxGN: 0 };
 
   @Input() rateControl = new FormControl(0, Validators.min(1));
@@ -24,6 +25,7 @@ export class DashboardComponent implements OnInit {
         this.rateControl.hasError('min') ? 'Debe tener al menos 1 hijo' :
             'fafdasfasd';
   }
+
 
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
@@ -173,6 +175,16 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  generateGraph() {
+    const files: FileList = this.fileInput.nativeElement.files;
+    if (files.length === 0) {
+      return;
+    };
+
+    this.rest.generateGraph(files).subscribe((data: any) => {
+      console.log(data);
+    });
+  }
 
 
 }

@@ -54,4 +54,8 @@ export class TableListComponent implements OnInit {
     });
   }
 
+  getPow(base: number, exp: number){
+    return Math.pow(base,exp)
+  }
+
 }

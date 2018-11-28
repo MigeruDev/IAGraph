@@ -74,13 +74,19 @@
               </div>
           </div>
       </div>
-      <button class="col-md-12" style="text-align: left" mat-button>
+      <button (click)="generateGraph()" class="col-md-12" style="text-align: left" mat-button>
         <h2>Generar Grafo Específico  <i class="medium material-icons">publish</i></h2>
       </button>
       <hr>
+      El archivo de nodos debe llamarse "Nodo.txt"
+      <br>
+      El archivo de aristass debe llamarse "Arista.txt"
       <div class="row">
+            <input #fileInput name="file" multiple type="file">
             
         <!--
+            <button mat-raised-button class="standard-button" (click)="uploadFile()">Upload file</button>
+            <input class="ng-hide" id="input-file-id" multiple type="file" />
             <div class="col-md-12">
                 <input #file type="file" accept="image/*" (change)="upload(file.files)">
             </div>

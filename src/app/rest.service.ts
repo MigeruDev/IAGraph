@@ -41,6 +41,19 @@ export class RestService {
     );
   }
 
+  generateGraph (files): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', files[0], files[0].name);
+    formData.append('file', files[1], files[1].name);
+    return this.http.post(endpoint + 'upload', formData).pipe(
+      tap((files) => console.log(`generate graph w/ id=${files}`)),
+      catchError(this.handleError<any>('generateGraph'))
+    );
+    
+  }
+
+
+
   blindSearch (search): Observable<any> {
     console.log(search);
     return this.http.post<any>(endpoint + 'blind_search', JSON.stringify(search), httpOptions).pipe(

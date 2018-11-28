@@ -5,7 +5,10 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Tabla Comparativa</h4>
-                        <p class="card-category"> Se compara la complejidad de los Algoritmos de Búsqueda</p>
+                        <p class="card-category"> Se compara la complejidad de los Algoritmos de Búsqueda
+                            <br>
+                            La tabla se irá actualizando según se realicen búsquedas
+                        </p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -30,10 +33,10 @@
                                             Búsqueda Amplitud
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{searchResult['BFS']['temporal']}}
                                         </td>
                                         <td>
-                                            O(bd) = {{b*d}}
+                                            O(bd) = {{searchResult['BFS']['spatial']}}
                                         </td>
                                         <td>
                                             {{searchResult['BFS']['complexity']}} ms
@@ -44,10 +47,10 @@
                                             Búsqueda Profundidad
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{searchResult['DFS']['temporal']}}
                                         </td>
                                         <td>
-                                            O(bd) = {{b*d}}
+                                            O(bd) = {{searchResult['DFS']['spatial']}}
                                         </td>
                                         <td>
                                             {{searchResult['DFS']['complexity']}} ms
@@ -58,10 +61,10 @@
                                             Búsqueda Profundidad Iterativa
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{searchResult['IDDFS']['temporal']}}
                                         </td>
                                         <td>
-                                            O(b) = {{b}}
+                                            O(b) = {{searchResult['IDDFS']['spatial']}}
                                         </td>
                                         <td>
                                             {{searchResult['IDDFS']['complexity']}} ms
@@ -72,10 +75,10 @@
                                             Búsqueda Costo Uniforme
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{searchResult['UCS']['temporal']}}
                                         </td>
                                         <td>
-                                            O(bd) = {{b*d}}
+                                            O(bd) = {{searchResult['UCS']['spatial']}}
                                         </td>
                                         <td>
                                             {{searchResult['UCS']['complexity']}} ms
@@ -86,10 +89,10 @@
                                             Búsqueda Bidireccional
                                         </td>
                                         <td>
-                                            O(b^(d/2)) = {{bd2}}
+                                            O(b^(d/2)) = {{searchResult['BS']['temporal']}}
                                         </td>
                                         <td>
-                                            O(b^(d/2)) = {{bd2}}
+                                            O(b^(d/2)) = {{searchResult['BS']['spatial']}}
                                         </td>
                                         <td>
                                             {{searchResult['BS']['complexity']}} ms
@@ -100,10 +103,10 @@
                                             Búsqueda Gradiente
                                         </td>
                                         <td>
-                                            O(d) = {{d}} 
+                                            O(d) = {{heuristicSearchResult['HC']['temporal']}}
                                         </td>
                                         <td>
-                                            O(b) = {{b}}
+                                            O(b) = {{heuristicSearchResult['HC']['spatial']}}
                                         </td>
                                         <td>
                                             {{heuristicSearchResult['HC']['complexity']}} ms
@@ -114,10 +117,10 @@
                                             Búsqueda Primero el Mejor
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{heuristicSearchResult['BestFS']['temporal']}}
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{heuristicSearchResult['BestFS']['spatial']}}
                                         </td>
                                         <td>
                                             {{heuristicSearchResult['BestFS']['complexity']}} ms
@@ -128,10 +131,10 @@
                                             Búsqueda A*
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{heuristicSearchResult['A*']['temporal']}}
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{heuristicSearchResult['A*']['spatial']}}
                                         </td>
                                         <td>
                                             {{heuristicSearchResult['A*']['complexity']}} ms
@@ -142,10 +145,10 @@
                                             Búsqueda Avara
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{heuristicSearchResult['GS']['temporal']}}
                                         </td>
                                         <td>
-                                            O(b^d) = {{bd}}
+                                            O(b^d) = {{heuristicSearchResult['GS']['spatial']}}
                                         </td>
                                         <td>
                                             {{heuristicSearchResult['GS']['complexity']}} ms
